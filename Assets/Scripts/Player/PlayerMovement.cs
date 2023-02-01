@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
+    private int jumpNumber = 0;
     [SerializeField] private LayerMask terrainLayer;
     [SerializeField] private float distance = 1.0f;
     [SerializeField] private float speed = 8f;
@@ -22,8 +23,9 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && (IsGrounded() || jumpNumber < 2))
         {
+            jumpNumber++;
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
 
@@ -47,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, terrainLayer);
         if (hit.collider != null)
         {
+            jumpNumber = 0;
             return true;
         }
 
