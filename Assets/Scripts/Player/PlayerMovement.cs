@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private int jumpNumber = 0;
     [SerializeField] private LayerMask terrainLayer;
     [SerializeField] private float distance = 1.0f;
-    [SerializeField] private float speed = 8f;
+    [SerializeField] public float speed = 8f;
     [SerializeField] private float jumpingPower = 16f;
     private bool isFacingRight = true;
 
@@ -36,11 +36,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            Jump();
         }
 
         Flip();
     }
+
+    public void Jump() => rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
 
     private void FixedUpdate()
     {
