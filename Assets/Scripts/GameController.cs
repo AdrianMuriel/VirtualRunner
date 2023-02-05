@@ -19,10 +19,8 @@ public class GameController : MonoBehaviour
     {
         while (playerLifes.life > 0)
         {
-            Debug.Log("Las vidas del jugador son " + playerLifes.life);
             yield return new WaitForSeconds(1.0f);
         }
-        Debug.Log("Las vidas del jugador han llegado a 0.");
         SceneManager.LoadScene("GameOverScene");
     }
 
