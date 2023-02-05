@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameController gc;
     private float horizontal;
     private int jumpNumber = 0;
     [SerializeField] private LayerMask terrainLayer;
@@ -75,4 +76,20 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = localScale;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Fruit")
+        {
+            gc.score++;
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "Enemy")
+        {
+            anim.SetBool("Hit", true);
+        }
+    }
+
+    private void endHitAnim() => anim.SetBool("Hit", false);
+
 }

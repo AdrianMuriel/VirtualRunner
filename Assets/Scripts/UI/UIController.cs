@@ -5,7 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
+    [SerializeField] Animator anim;
+    private void Start()
+    {
+        if (this.gameObject.tag == "Player")
+        {
+            anim = GetComponent<Animator>();
+        }
+    }
     public void LoadGame() => SceneManager.LoadScene("GameScene");
+    public void RestartGame() => anim.SetBool("Restart", true);
 
     public void ExitGame() => Application.Quit();
 }

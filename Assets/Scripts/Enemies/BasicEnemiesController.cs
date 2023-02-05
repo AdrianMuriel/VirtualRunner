@@ -12,6 +12,7 @@ public class BasicEnemiesController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         localScale = transform.localScale;
         StartCoroutine(enemyCorutine());
     }
@@ -37,7 +38,7 @@ public class BasicEnemiesController : MonoBehaviour
     {
         if (other.gameObject.tag == "PlayerFeet")
         {
-            Destroy(this.gameObject);
+            anim.SetBool("Hitted", true);
         }
         if (other.gameObject.tag == "Player")
         {
@@ -45,4 +46,6 @@ public class BasicEnemiesController : MonoBehaviour
         }
 
     }
+
+    void destroyEnemy() => Destroy(this.gameObject);
 }
