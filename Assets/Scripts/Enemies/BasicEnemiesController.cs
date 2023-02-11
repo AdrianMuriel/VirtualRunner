@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicEnemiesController : MonoBehaviour
 {
     public PlayerLife playerLifes;
+    [SerializeField] private float distance = 2f;
     [SerializeField] private float turnTime = 2f;
     private Animator anim;
     private Rigidbody2D rb;
@@ -21,16 +22,11 @@ public class BasicEnemiesController : MonoBehaviour
     {
         while (true)
         {
-            rb.velocity = new Vector2(-5f, 0f);
-            yield return new WaitForSeconds(turnTime);
             localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
-            rb.velocity = new Vector2(5f, 0f);
+            rb.velocity = new Vector2(-distance * localScale.x, 0f);
             yield return new WaitForSeconds(turnTime);
-            localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
         }
     }
 
@@ -38,8 +34,15 @@ public class BasicEnemiesController : MonoBehaviour
     {
         if (other.gameObject.tag == "PlayerFeet")
         {
-            other.gameObject.transform.up += Vector3.up*5f;
+            other.gameObject.transform.up += Vector3.up * 5f;
             anim.SetBool("Hitted", true);
+        }
+        if (other.gameObject.tag == "Box")
+        {
+            localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+            rb.velocity = new Vector2(-distance * localScale.x, 0f);
         }
 
     }

@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
+        transform.position = new Vector3(target.position.x, transform.position.y, -10);
         offset = transform.position - target.position;
     }
 

@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - PlayerFeet
   - Fruit
+  - checkpoint
+  - Box
   layers:
   - Default
   - TransparentFX

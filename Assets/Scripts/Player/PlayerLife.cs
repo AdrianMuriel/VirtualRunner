@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    [SerializeField] private Transform respawnPoint;
+    [SerializeField] public Transform respawnPoint;
     [SerializeField] public int life;
     [SerializeField] private Image[] lifeIcons;
 

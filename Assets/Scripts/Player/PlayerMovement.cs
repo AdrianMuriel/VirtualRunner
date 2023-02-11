@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public GameController gc;
     private float horizontal;
     private int jumpNumber = 0;
+    public PlayerLife playerLife;
     [SerializeField] private LayerMask terrainLayer;
     [SerializeField] private float distance = 1.0f;
     [SerializeField] public float speed = 8f;
@@ -87,6 +88,14 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             anim.SetBool("Hit", true);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "checkpoint")
+        {
+            other.GetComponent<Animator>().SetBool("catched", true);
+            playerLife.respawnPoint = other.gameObject.transform;
         }
     }
 
