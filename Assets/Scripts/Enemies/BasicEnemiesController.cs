@@ -38,11 +38,8 @@ public class BasicEnemiesController : MonoBehaviour
     {
         if (other.gameObject.tag == "PlayerFeet")
         {
+            other.gameObject.transform.up += Vector3.up*5f;
             anim.SetBool("Hitted", true);
-        }
-        if (other.gameObject.tag == "Player")
-        {
-            playerLifes.life--;
         }
 
     }

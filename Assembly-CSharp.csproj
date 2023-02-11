@@ -42,6 +42,9 @@
      <Compile Include="Assets\Scripts\Player\PlayerLife.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Enemies\TreeController.cs" />
+     <Compile Include="Assets\Scripts\Enemies\TreeBulletController.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Programas\Unity\Hub\Editor\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
