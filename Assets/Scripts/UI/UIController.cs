@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
             anim = GetComponent<Animator>();
         }
     }
+    public void MainMenu() => SceneManager.LoadScene("MainMenuScene");
     public void LoadGame() => SceneManager.LoadScene("GameScene");
     public void RestartGame() => anim.SetBool("Restart", true);
 

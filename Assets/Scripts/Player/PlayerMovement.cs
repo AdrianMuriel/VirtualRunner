@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameController gc;
     private float horizontal;
     private int jumpNumber = 0;
     public PlayerLife playerLife;
@@ -38,13 +37,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
-            Jump();
+            Jump(0f);
         }
 
         Flip();
     }
 
-    public void Jump() => rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+    public void Jump(float extraPower) => rb.velocity = new Vector2(rb.velocity.x, (rb.velocity.y + extraPower) * 0.5f);
 
     private void FixedUpdate()
     {
@@ -80,11 +79,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Fruit")
-        {
-            gc.score++;
-            Destroy(other.gameObject);
-        }
         if (other.gameObject.tag == "Enemy")
         {
             anim.SetBool("Hit", true);

@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
 {
     public PlayerLife playerLifes;
     public int score = 0;
+    public int scoreAux = 0;
     [SerializeField] private Text scoreTxt;
 
     private IEnumerator coroutine;
@@ -25,6 +26,15 @@ public class GameController : MonoBehaviour
             scoreTxt.text = score.ToString();
             yield return new WaitForSeconds(1.0f);
             scoreTxt.text = score.ToString();
+            if (scoreAux == 5)
+            {
+                scoreAux = 0;
+                if (playerLifes.life < 3)
+                {
+                    playerLifes.life++;
+                }
+            }
+
         }
         SceneManager.LoadScene("GameOverScene");
     }
